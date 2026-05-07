@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Nunito', sans-serif;
+  --font-display: 'Fredoka', sans-serif;
+
+  --color-background: hsl(250 30% 97%);
+  --color-foreground: hsl(260 40% 15%);
+  --color-border: hsl(260 20% 88%);
+  --color-input: hsl(260 20% 88%);
+  --color-ring: hsl(280 80% 60%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(260 40% 15%);
+  --color-card-border: hsl(260 20% 88%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(260 40% 15%);
+  --color-popover-border: hsl(260 20% 88%);
+
+  --color-primary: hsl(280 80% 60%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-primary-border: hsl(280 80% 55%);
+
+  --color-secondary: hsl(330 80% 60%);
+  --color-secondary-foreground: hsl(0 0% 100%);
+  --color-secondary-border: hsl(330 80% 55%);
+
+  --color-muted: hsl(260 20% 94%);
+  --color-muted-foreground: hsl(260 20% 50%);
+  --color-muted-border: hsl(260 20% 88%);
+
+  --color-accent: hsl(45 100% 55%);
+  --color-accent-foreground: hsl(40 80% 20%);
+  --color-accent-border: hsl(45 100% 45%);
+
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-destructive-border: hsl(0 84% 55%);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-wide;
+  }
+}
+
+@layer utilities {
+
+  /* ── Bouncy press button ── */
+  .bouncy-btn {
+    @apply transform transition-all duration-150 active:scale-95 active:translate-y-0.5;
+    box-shadow: 0 6px 0 0 rgba(0,0,0,0.18);
+  }
+  .bouncy-btn:active {
+    box-shadow: 0 1px 0 0 rgba(0,0,0,0.18);
+  }
+
+  /* ── Glass card ── */
+  .glass-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.6);
+  }
+
+  /* ── Gradient button ── */
+  .gradient-btn {
+    @apply text-white font-bold transition-all duration-200;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    box-shadow: 0 6px 0 0 #7e22ce, 0 8px 20px rgba(168,85,247,0.4);
+  }
+  .gradient-btn:hover {
+    background: linear-gradient(135deg, #9333ea, #db2777);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 0 #7e22ce, 0 12px 24px rgba(168,85,247,0.5);
+  }
+  .gradient-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 #7e22ce;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 30%, #a855f7 60%, #ec4899 100%);
+  }
+
+  /* ── Floating blob ── */
+  .floating-blob {
+    @apply absolute rounded-full opacity-15 pointer-events-none;
+    filter: blur(70px);
+    animation: float-blob 9s ease-in-out infinite;
+  }
+
+  @keyframes float-blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(24px, -35px) scale(1.06); }
+    66%       { transform: translate(-24px, 18px) scale(0.94); }
+  }
+
+  /* ── Child list row hover ── */
+  .child-card-hover {
+    @apply transition-all duration-200;
+  }
+  .child-card-hover:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 8px 24px -6px rgba(139,92,246,0.25);
+  }
+
+  /* ── Wiggle animation ── */
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-4deg); }
+    50%       { transform: rotate(4deg); }
+  }
+  .wiggle {
+    animation: wiggle 0.6s ease-in-out infinite;
+  }
+
+  /* ── Pulse glow ── */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,0.5); }
+    50%       { box-shadow: 0 0 0 14px rgba(168,85,247,0); }
+  }
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* ── Bounce in ── */
+  @keyframes bounce-in {
+    0%   { transform: scale(0.5); opacity: 0; }
+    70%  { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .bounce-in {
+    animation: bounce-in 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  }
+
+  /* ── Pop ── */
+  @keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+  }
+  .pop {
+    animation: pop 0.35s ease-in-out;
+  }
+
+  /* ── Star spin ── */
+  @keyframes star-spin {
+    from { transform: rotate(0deg) translateX(28px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(28px) rotate(-360deg); }
+  }
+
+  /* ── Evening mode ── */
+  .evening-mode body {
+    background: #1e1b4b;
+  }
+
+  /* ── Kid task card ── */
+  .kid-task {
+    @apply transition-all duration-200 select-none;
+    transform: translateZ(0);
+  }
+  .kid-task:active {
+    transform: scale(0.97);
+  }
+}

@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For bouncy, playful animations suitable for a kids app"
+  "canvas-confetti": "For celebration effects when completing routines"
+  "@types/canvas-confetti": "Types for canvas-confetti"
+  "clsx": "Classname merging utility"
+  "tailwind-merge": "Classname merging utility for tailwind"
+  "lucide-react": "Beautiful SVG icons"
+
+images:
+  - path: "artifacts/kids-routine/public/images/hero-morning.png"
+    description: "Bright sunny cartoon landscape with smiling clouds, blue sky, and rolling green hills, perfect for a kids morning routine app background, vibrant colors"
+    aspect_ratio: "16:9"
+  - path: "artifacts/kids-routine/public/images/hero-evening.png"
+    description: "Cozy magical starry night sky with a sleeping cartoon moon, dark blue and purple colors, glowing stars, perfect for a kids evening routine app background"
+    aspect_ratio: "16:9"
+  - path: "artifacts/kids-routine/public/images/logo.png"
+    description: "A colorful, playful, bubbly typography logo that says 'Routini' with a small shiny star next to it, suitable for a kids app"
+    aspect_ratio: "1:1"
+
+notes:
+  - Assumes backend returns exact types matching orval output
+  - Uses JWT token from localStorage attached to every request via hook options
